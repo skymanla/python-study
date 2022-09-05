@@ -1,1 +1,1 @@
-from .dbconfig import conn
+from .dbconfig import conn, makeDictFactory

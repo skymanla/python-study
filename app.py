@@ -10,10 +10,10 @@ def hello_world():
 @app.route('/connection')
 def connection():
     conn = config.dbconfig.conn()
-    conn.execute("""select * from tb_member_mst where member_cd = :member_cd""", member_cd = 361)
-    rows = conn.fetchall()
-    conn.close()
-    return rows
+    with conn.cursor() as cursor:
+        cursor.execute("""select * from tb_member_mst where member_gbn = 'P'""")
+        cursor.rowfactory = config.dbconfig.makeDictFactory(cursor)
+        return cursor.fetchall()
     
 if __name__ == '__main__':
     app.run(debug=True)
