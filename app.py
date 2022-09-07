@@ -9,11 +9,9 @@ def hello_world():
 
 @app.route('/connection')
 def connection():
-    conn = config.dbconfig.conn()
-    with conn.cursor() as cursor:
-        cursor.execute("""select * from tb_member_mst where member_gbn = 'P'""")
-        cursor.rowfactory = config.dbconfig.makeDictFactory(cursor)
-        return cursor.fetchall()
+    _dbConfig = config.dbConfig()
+    conn = _dbConfig.conn()
+    return _dbConfig.getQuery('getOne', "select * from tb_member_mst where member_gbn = :memberGbn", ['P'])
     
 if __name__ == '__main__':
     app.run(debug=True)
