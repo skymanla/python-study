@@ -3,3 +3,4 @@ wheel
 cx_Oracle
 Flask
 python-dotenv
+bcrypt
