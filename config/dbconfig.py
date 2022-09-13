@@ -24,7 +24,7 @@ class dbConfig:
         
         return createRow
         
-    def getQuery(self, _type, _query, _values = 'none'):
+    def getQuery(self, _type, _query, _values = []):
         _conn = self.conn()
         try:    
             with _conn.cursor() as cursor:
